@@ -48,16 +48,17 @@ const extractFields = async (
               createNode,
               auth,
             })
-
+            console.log('files will download:', source_url, fileNode, field)
             // If we don't have cached data, download the file
-            if (fileNode) {
-              fileNodeID = fileNode.id
-
-              await cache.set(mediaDataCacheKey, {
-                fileNodeID,
-                modified: field.updatedAt,
-              })
-            }
+            // if (fileNode) {
+            //   fileNodeID = fileNode.id
+            //   console.log('we got image', field, fileNode)
+            //   await cache.set(mediaDataCacheKey, {
+            //     fileNodeID,
+            //     modified: field.updatedAt,
+            //     url2:field.url,
+            //   })
+            // }
           } catch (e) {
             // Ignore
           }
@@ -83,7 +84,6 @@ exports.downloadMediaFiles = async ({
   Promise.all(
     entities.map(async entity => {
       for (let item of entity) {
-        // loop item over fields
         await extractFields(
           apiURL,
           store,

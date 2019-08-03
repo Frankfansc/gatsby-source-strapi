@@ -56,6 +56,7 @@ exports.sourceNodes = async (
   // Execute the promises.
   let entities = await Promise.all(promises)
 
+  // don't loading image to local --fansc
   entities = await normalize.downloadMediaFiles({
     entities,
     apiURL,
